@@ -98,4 +98,20 @@ Future improvements may include:
 
 The application includes a health endpoint and containerized deployment using Docker. This allows consistent execution across development and evaluation environments.
 
+## POS Transaction Correlation
+
+The challenge resources included POS transaction data containing store-level purchase records such as transaction timestamps, basket values, and product information.
+
+In a production-grade Store Intelligence System, these transactions can be correlated with visitor sessions to calculate business metrics such as conversion rate, billing-zone effectiveness, and purchase funnel performance.
+
+The current implementation focuses on visitor detection, tracking, event generation, occupancy analytics, anomaly detection, and KPI generation. Direct correlation between visitor sessions and POS transactions was identified as a future enhancement.
+
+A future version of the system can match visitor sessions with nearby transaction timestamps and billing-zone activity to estimate customer conversion and generate richer retail intelligence metrics.
+
+## Conclusion
+
 The design prioritizes simplicity, maintainability, and ease of deployment while satisfying the functional requirements of the challenge.
+
+The system demonstrates an end-to-end retail intelligence workflow, including visitor detection, tracking, event generation, analytics computation, anomaly detection, KPI reporting, REST APIs, and dashboard visualization.
+
+The architecture is modular and can be extended with advanced capabilities such as POS transaction correlation, staff identification, cross-camera re-identification, event streaming, and cloud-native deployment for production-scale retail environments.
