@@ -122,6 +122,27 @@ Potential enhancements include:
 
 The architecture has been intentionally designed in a modular manner so these capabilities can be integrated with minimal changes to the analytics layer and API interfaces.
 
+## Limitations and Future Improvements
+
+### Current Limitations
+
+- Staff members may be counted as visitors because no dedicated staff identification model is currently implemented.
+
+- Re-entry handling is based on tracking continuity and may not remain accurate after long absences, severe occlusions, or complete track loss.
+
+- Multi-camera re-identification is not implemented, so visitors moving across different camera views may be treated as new individuals.
+
+### Future Improvements
+
+- Staff whitelisting and employee identification models.
+
+- Appearance-based re-identification using embeddings for more accurate visitor tracking.
+
+- Cross-camera tracking for large retail environments.
+
+- Real-time event streaming using Kafka and scalable cloud deployment.
+
+- Advanced anomaly detection using behavioral analytics models.
 
 ## Conclusion
 
