@@ -1,3 +1,9 @@
+# PROMPT:
+# Generate a simple validation test for KPI calculations in the Store Intelligence System.
+
+# CHANGES MADE:
+# Modified imports and adjusted assertions to match project structure.
+
 from session_tracker import process_visitor, visitor_exit
 
 print(process_visitor("1"))

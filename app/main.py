@@ -152,3 +152,24 @@ def store_metrics(
         "exits": exits,
         "active_visitors": entries - exits
     }
+@app.get("/stores/{store_id}/funnel")
+def store_funnel(
+        store_id: str,
+        db: Session = Depends(get_db)):
+
+    entries = db.query(Event)\
+        .filter(Event.event_type == "entry")\
+        .count()
+
+    exits = db.query(Event)\
+        .filter(Event.event_type == "exit")\
+        .count()
+
+    active = entries - exits
+
+    return {
+        "store_id": store_id,
+        "entered": entries,
+        "active": active,
+        "exited": exits
+    }
