@@ -1,3 +1,9 @@
+# Purplle Store Intelligence System
+
+![Python](https://img.shields.io/badge/Python-3.11-blue)
+![FastAPI](https://img.shields.io/badge/FastAPI-Backend-green)
+![YOLOv8](https://img.shields.io/badge/YOLOv8-Detection-orange)
+![Docker](https://img.shields.io/badge/Docker-Enabled-blue)
 # 🛍️ Purplle Store Intelligence System
 
 AI-powered retail analytics platform built for the **Purplle Store Intelligence Challenge 2026**.
@@ -242,14 +248,15 @@ store.db
 
 ```text
 GET /stores/{store_id}/metrics
+GET /stores/{store_id}/funnel
 ```
 
 Example:
 
 ```text
 GET /stores/STORE_BLR_002/metrics
+GET /stores/STORE_BLR_002/funnel
 ```
-
 ---
 
 # ❤️ Health Monitoring
@@ -294,6 +301,7 @@ These documents explain:
 - Multi-Camera Support
 - PostgreSQL Integration
 - Real-Time Event Streaming
+- POS Transaction Correlation
 - Staff/Customer Differentiation
 - Advanced Visitor Re-Identification
 - Cloud Deployment
