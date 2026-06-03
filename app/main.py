@@ -3,6 +3,7 @@ from sqlalchemy.orm import Session
 
 from app.database import engine, get_db
 from app.models import Base, Event, EventCreate
+from app.pos import get_pos_metrics
 
 Base.metadata.create_all(bind=engine)
 
@@ -172,4 +173,51 @@ def store_funnel(
         "entered": entries,
         "active": active,
         "exited": exits
+    }
+@app.get("/queue")
+def queue_metrics(db: Session = Depends(get_db)):
+    completed = db.query(Event).filter(
+        Event.event_type == "queue_completed"
+    ).count()
+
+    abandoned = db.query(Event).filter(
+        Event.event_type == "queue_abandoned"
+    ).count()
+
+    return {
+        "completed": completed,
+        "abandoned": abandoned
+    }
+@app.get("/zones")
+def zone_metrics(db: Session = Depends(get_db)):
+
+    entered = db.query(Event).filter(
+        Event.event_type == "zone_entered"
+    ).count()
+
+    exited = db.query(Event).filter(
+        Event.event_type == "zone_exited"
+    ).count()
+
+    return {
+        "zone_entries": entered,
+        "zone_exits": exited
+    }
+@app.get("/pos")
+def pos():
+    return get_pos_metrics()
+@app.get("/zones")
+def zone_metrics(db: Session = Depends(get_db)):
+
+    entered = db.query(Event).filter(
+        Event.event_type == "zone_entered"
+    ).count()
+
+    exited = db.query(Event).filter(
+        Event.event_type == "zone_exited"
+    ).count()
+
+    return {
+        "zone_entries": entered,
+        "zone_exits": exited
     }

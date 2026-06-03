@@ -3,7 +3,7 @@ from ultralytics import YOLO
 model = YOLO("yolov8n.pt")
 
 results = model.track(
-    source="sample_data/CAM 5.mp4",
+    source="sample_data/store 2/entry 1.mp4",
     tracker="bytetrack.yaml",
     persist=True,
     save=True,

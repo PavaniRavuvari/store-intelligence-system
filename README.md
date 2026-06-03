@@ -20,8 +20,8 @@ The system processes CCTV footage, tracks customer movement, generates store eve
 - Multi-Person Tracking
 - Entry Detection
 - Exit Detection
-- Re-entry Detection
-- Zone Tracking
+- Zone Entry Tracking
+- Zone Exit Tracking
 - Visitor Session Tracking
 
 ### Analytics Engine
@@ -33,6 +33,9 @@ The system processes CCTV footage, tracks customer movement, generates store eve
 - KPI Dashboard
 - Crowding Detection
 - Anomaly Detection
+- Queue Completion Analytics
+- Queue Abandonment Analytics
+- POS Transaction Analytics
 
 ### Platform
 
@@ -56,6 +59,8 @@ Person Tracking
      ↓
 Event Generation
      ↓
+Zone / Queue / POS Analytics
+     ↓
 SQLite Database
      ↓
 Analytics Engine
@@ -71,39 +76,54 @@ Streamlit Dashboard
 
 ```text
 store-intelligence-system/
+store-intelligence-system/
 
 ├── app/
 │   ├── main.py
 │   ├── database.py
 │   ├── models.py
+│   ├── analytics.py
 │   ├── occupancy.py
 │   ├── dwell_time.py
+│   ├── crowding.py
+│   ├── anomaly.py
 │   ├── kpi.py
-│   └── ...
+│   └── pos.py
 
 ├── dashboard/
 │   └── app.py
 
 ├── pipeline/
-│   └── track_people.py
+│   ├── detect_people.py
+│   ├── track_people.py
+│   ├── event_generator.py
+│   ├── session_tracker.py
+│   ├── zone_tracker.py
+│   └── zones.py
 
 ├── sample_data/
+│   ├── pos_transaction.json
+│   ├── sample_datastore_video.mp4
+│   └── output.mp4
+
+├── docs/
+│   ├── architecture.md
+│   ├── dashboard.png
+│   ├── swagger.png
+│   ├── camera_output_1.png
+│   ├── camera_output_2.png
+│   └── PROGRESS.md
 
 ├── tests/
 
-├── docs/
-│   ├── dashboard.png
-│   ├── swagger.png
-│   ├── camera_output.png
-│   └── camera_output_2.png
-
 ├── Dockerfile
 ├── docker-compose.yml
+├── requirements.txt
 ├── README.md
 ├── DESIGN.md
 ├── CHOICES.md
-├── requirements.txt
-└── store.db
+├── store.db
+└── yolov8n.pt
 ```
 
 ---
@@ -120,6 +140,9 @@ The Streamlit dashboard provides:
 - Crowding Alerts
 - Anomaly Monitoring
 - KPI Overview
+- Queue Monitoring
+- Zone Activity Insights
+- POS Performance Metrics
 
 ---
 
@@ -239,6 +262,49 @@ store.db
 - GET /anomaly
 - GET /funnel
 - GET /kpis
+- GET /queue
+- GET /zones
+- GET /pos
+
+### Queue Analytics
+
+GET /queue
+
+Example Response:
+
+```json
+{
+  "completed": 5,
+  "abandoned": 2
+}
+```
+
+### Zone Analytics
+
+GET /zones
+
+Example Response:
+
+```json
+{
+  "zone_entries": 12,
+  "zone_exits": 10
+}
+```
+
+### POS Analytics
+
+GET /pos
+
+Example Response:
+
+```json
+{
+  "transactions": 3,
+  "revenue": 2700,
+  "avg_basket_value": 900
+}
+```
 
 ## Health API
 
@@ -301,8 +367,9 @@ These documents explain:
 - Multi-Camera Support
 - PostgreSQL Integration
 - Real-Time Event Streaming
-- POS Transaction Correlation
+- Visitor-to-POS Attribution
 - Staff/Customer Differentiation
+- Age & Gender Prediction
 - Advanced Visitor Re-Identification
 - Cloud Deployment
 
@@ -318,7 +385,7 @@ These documents explain:
 - SQLite
 - SQLAlchemy
 - Docker
-
+- Swagger/OpenAPI
 ---
 
 # 👩‍💻 Author
