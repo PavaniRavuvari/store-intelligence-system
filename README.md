@@ -76,8 +76,6 @@ Streamlit Dashboard
 
 ```text
 store-intelligence-system/
-store-intelligence-system/
-
 ├── app/
 │   ├── main.py
 │   ├── database.py
@@ -268,7 +266,7 @@ store.db
 
 ### Queue Analytics
 
-GET /queue
+`GET /queue`
 
 Example Response:
 
@@ -281,7 +279,7 @@ Example Response:
 
 ### Zone Analytics
 
-GET /zones
+`GET /zones`
 
 Example Response:
 
@@ -294,7 +292,7 @@ Example Response:
 
 ### POS Analytics
 
-GET /pos
+`GET /pos`
 
 Example Response:
 
@@ -364,7 +362,7 @@ These documents explain:
 
 # 🔮 Future Improvements
 
-- Multi-Camera Support
+- Multi-Camera Tracking & Re-Identification
 - PostgreSQL Integration
 - Real-Time Event Streaming
 - Visitor-to-POS Attribution
